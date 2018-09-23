@@ -8,17 +8,14 @@ jobs:
           name: Clone repository
           command: git clone https://bitbucket.org/devops_sysops/docker-apache.git
       - run:
-          name: Export image name
-          command: export IMAGE_NAME=spy86/jboss-wildfly:$CIRCLE_SHA1
-      - run:
           name: Build docker image
-          command: docker build . -t $IMAGE_NAME
+          command: docker build -t spy86/jboss-wildfly:$CIRCLE_SHA1 .
       - run:
           name: Login into Docker Hub
           command: docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
       - run:
           name: Push docker image to Docker Hub
-          command: docker push $IMAGE_NAME
+          command: docker push spy86/jboss-wildfly:$CIRCLE_SHA1
 workflows:
   version: 2
   test:
