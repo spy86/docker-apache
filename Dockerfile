@@ -8,7 +8,6 @@ RUN yum -y --setopt=tsflags=nodocs update && \
     yum clean all
 
 EXPOSE 80
-EXPOSE 443
 
 # Simple startup script to avoid some issues observed with container restart
 ADD run-httpd.sh ./run-httpd.sh
