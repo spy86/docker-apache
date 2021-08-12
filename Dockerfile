@@ -3,6 +3,7 @@ FROM centos:7
 MAINTAINER "Maciej Michalski <maciej.michalsk@gmail.com>"
 
 RUN yum -y --setopt=tsflags=nodocs update && \
+    yum -y --setopt=tsflags=nodocs upgrade && \
     yum -y --setopt=tsflags=nodocs install httpd && \
     yum -y --setopt=tsflags=nodocs install nano && \
     yum clean all
