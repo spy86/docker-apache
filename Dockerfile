@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:latest
 RUN yum -y --setopt=tsflags=nodocs update && \
     yum -y --setopt=tsflags=nodocs upgrade && \
     yum -y --setopt=tsflags=nodocs install httpd && \
