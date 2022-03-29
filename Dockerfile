@@ -1,8 +1,13 @@
-FROM centos:7
-RUN yum -y --setopt=tsflags=nodocs update && \
-    yum -y --setopt=tsflags=nodocs upgrade && \
-    yum -y --setopt=tsflags=nodocs install httpd && \
-    yum -y --setopt=tsflags=nodocs install nano && \
+FROM centos:latest
+
+RUN cd /etc/yum.repos.d/
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+RUN yum -y update && \
+    yum -y upgrade && \
+    yum -y install httpd && \
+    yum -y install nano && \
     yum clean all
 EXPOSE 80
 # Simple startup script to avoid some issues observed with container restart
